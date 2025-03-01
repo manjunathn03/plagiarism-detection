@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/text.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <h1 class="page-title">TEXT PLAGIARISM DETECTION</h1>
+    <p class="page-subtitle">Enter two pieces of text to check for plagiarism.</p>
+
+    <form action="{{ url_for('detect_text') }}" method="post" onsubmit="return validateForm()">
+        <div class="container-wrapper">
+            <!-- Left Text Container -->
+            <div class="text-container">
+                <h3>Text 1</h3>
+                <textarea name="text1" id="text1" placeholder="Enter first text" rows="6" required></textarea>
+            </div>
+
+            <!-- Right Text Container -->
+            <div class="text-container">
+                <h3>Text 2</h3>
+                <textarea name="text2" id="text2" placeholder="Enter second text" rows="6" required></textarea>
+            </div>
+        </div>
+
+        <!-- Error Message Display -->
+        <p id="error-message" style="color: red; text-align: center;"></p>
+
+        <!-- Centered Button -->
+        <div class="button-container">
+            <button type="submit" class="btn-primary">Detect Text Plagiarism</button>
+        </div>
+    </form>
+</div>
+
+<!-- Form Validation Script -->
+<script>
+    function validateForm() {
+        const text1 = document.getElementById("text1").value.trim();
+        const text2 = document.getElementById("text2").value.trim();
+        const errorMessage = document.getElementById("error-message");
+
+        if (text1 === "" || text2 === "") {
+            errorMessage.textContent = "Both text fields are required!";
+            return false;
+        }
+
+        if (text1.length < 20 || text2.length < 20) {
+            errorMessage.textContent = "Each text input must be at least 20 characters long.";
+            return false;
+        }
+
+        errorMessage.textContent = ""; // Clear error message if validation passes
+        return true;
+    }
+</script>
+{% endblock %}

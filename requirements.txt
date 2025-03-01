@@ -1,0 +1,8 @@
+
+Flask
+sentence-transformers
+scikit-learn
+tensorflow
+keras
+opencv-python
+lime

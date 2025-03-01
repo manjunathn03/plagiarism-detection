@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<style>
+  /* Basic reset + full-height setup */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #ecf0f1;
+  }
+
+  /* Main container to center everything vertically + horizontally */
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;        /* center horizontally */
+    justify-content: center;    /* center vertically */
+    min-height: 100vh;          /* occupy full viewport height */
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-right: 200px;
+  }
+
+  /* Header with back arrow + main title */
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 10px;                  /* space between arrow + text */
+    margin-bottom: 20px;
+  }
+  .header .back-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .header .back-arrow i {
+    font-size: 24px;           /* arrow icon size */
+    color: #2c3e50;
+  }
+
+  /* Subtitle text */
+  .page-subtitle {
+    font-size: 16px;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+  }
+
+  /* File Upload Container */
+  .upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  /* Hidden File Input */
+  #file-upload {
+    display: none;
+  }
+
+  /* Custom Round Upload Button */
+  .custom-file-upload {
+    background-color: #1abc9c;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    width: 80px;
+    height: 80px;
+    border: none;
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  .custom-file-upload:hover {
+    background-color: #16a085;
+    transform: scale(1.1);
+  }
+  .custom-file-upload img {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* File Name Display */
+  .file-name {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #34495e;
+    font-weight: bold;
+  }
+
+  /* Centered Button */
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+  .btn-primary {
+    background: #1abc9c;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  .btn-primary:hover {
+    background: #16a085;
+    transform: scale(1.05);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-container">
+  <!-- Header with back arrow + main title -->
+  <div class="header">
+    <button class="back-arrow" onclick="history.back()">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <h1>DOCUMENT PLAGIARISM DETECTION</h1>
+  </div>
+
+  <p class="page-subtitle">Upload a document (PDF, DOCX, TXT) to check for plagiarism.</p>
+
+  <form action="{{ url_for('detect_document') }}" method="post" enctype="multipart/form-data">
+    <div class="upload-container">
+      <input type="file" id="file-upload" name="document" accept=".pdf,.docx,.txt">
+      <label for="file-upload" class="custom-file-upload">
+        <img src="{{ url_for('static', filename='images/upload-icon.png') }}" alt="Upload Icon">
+      </label>
+      <p class="file-name">No file chosen</p>
+    </div>
+
+    <div class="button-container">
+      <button type="submit" class="btn-primary">Detect Document Plagiarism</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  // Update file name display on file selection
+  document.getElementById("file-upload").addEventListener("change", function () {
+    const fileName = this.files[0] ? this.files[0].name : "No file chosen";
+    document.querySelector(".file-name").textContent = fileName;
+  });
+</script>
+{% endblock %}

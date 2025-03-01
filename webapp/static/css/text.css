@@ -1,0 +1,86 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ecf0f1;
+    margin: 0;
+    padding: 0;
+}
+
+/* Page Styling */
+.page-container {
+    text-align: center;
+    padding: 50px;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+}
+
+/* Wrapper for text inputs */
+.container-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+/* Text Containers */
+.text-container {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 50%; /* Increased width */
+    max-width: 400px; /* Limits width expansion */
+}
+
+.text-container h3 {
+    text-align: center;
+    color: #34495e;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Updated Textarea */
+textarea {
+    width: 90%;
+    height: 150px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: none;
+    background-color: #f9f9f9;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* Updated Button Styling */
+.btn-primary {
+    background: #1abc9c;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    background: #16a085;
+    transform: scale(1.05);
+}

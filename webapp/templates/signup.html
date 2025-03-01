@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+<!-- Custom signup styles -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+<!-- Boxicons (for icons) -->
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="wrapper">
+  <div class="form-box">
+    <div class="register-container" id="register">
+      <!-- Top Bar with Login Link -->
+      <div class="signup-top">
+        <span>Have an account? <a href="{{ url_for('login_page') }}">Login</a></span>
+        <header>Sign Up</header>
+      </div>
+      <!-- Sign Up Form (Server-Side Submission) -->
+      <form method="POST" action="{{ url_for('signup_page') }}">
+        <!-- Firstname & Lastname -->
+        <div class="two-forms">
+          <div class="input-box">
+            <input type="text" class="input-field" name="firstname" placeholder="Firstname" required>
+            <i class="bx bx-user"></i>
+          </div>
+          <div class="input-box">
+            <input type="text" class="input-field" name="lastname" placeholder="Lastname" required>
+            <i class="bx bx-user"></i>
+          </div>
+        </div>
+        <!-- Email -->
+        <div class="input-box">
+          <input type="email" class="input-field" name="email" placeholder="Email" required>
+          <i class="bx bx-envelope"></i>
+        </div>
+        <!-- Password -->
+        <div class="input-box">
+          <input type="password" class="input-field" name="password" placeholder="Password" required>
+          <i class="bx bx-lock-alt"></i>
+        </div>
+        <!-- Register Button -->
+        <div class="input-box">
+          <input type="submit" class="submit" value="Register">
+        </div>
+        <!-- Remember Me & Optional Terms -->
+        <div class="two-col">
+          <div class="one">
+            <input type="checkbox" id="signup-check">
+            <label for="signup-check"> Remember Me</label>
+          </div>
+          {# <div class="two">
+            <a href="#">Terms & Conditions</a>
+          </div> #}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

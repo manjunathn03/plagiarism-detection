@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+<!-- Custom login styles -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+<!-- Boxicons (for icons) -->
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="wrapper">
+  <div class="form-box">
+    <div class="login-container" id="login">
+      <!-- Top Bar with Sign-Up Link -->
+      <div class="login-top">
+        <span>Don't have an account? <a href="{{ url_for('signup_page') }}">Sign Up</a></span>
+        <header>Login</header>
+      </div>
+      <!-- Login Form (Standard HTML Form) -->
+      <form method="POST" action="{{ url_for('login_page') }}">
+        <!-- Email Field -->
+        <div class="input-box">
+          <input type="email" class="input-field" name="email" placeholder="Email" required>
+          <i class="bx bx-user"></i>
+        </div>
+        <!-- Password Field -->
+        <div class="input-box">
+          <input type="password" class="input-field" name="password" placeholder="Password" required>
+          <i class="bx bx-lock-alt"></i>
+        </div>
+        <!-- Sign In Button -->
+        <div class="input-box">
+          <input type="submit" class="submit" value="Sign In">
+        </div>
+        <!-- Remember Me & (Optional) Forgot Password -->
+        <div class="two-col">
+          <div class="one">
+            <input type="checkbox" id="login-check">
+            <label for="login-check"> Remember Me</label>
+          </div>
+          <div class="two">
+            {# If forgot password functionality is added later, uncomment below #}
+            {# <a href="#">Forgot password?</a> #}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

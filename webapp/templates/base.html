@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PLAGIARISM DETECTION</title>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+  <!-- Font Awesome 6.4.0 with correct SRI -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-wK13a7W0SIF8uIyY3+T5+vZp2XQk4l/gxTsOvJ2sWgG9TZnH3ghPhCUPtPqN5gW8k2R41Lf2F4c8CL3JBAlDeQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<div class="container">
+  <!-- Hide sidebar for login/signup + image/code/document routes -->
+  {% if request.endpoint not in ['login_page', 'signup_page',
+                                 'image_plagiarism_page', 'code_plagiarism_page', 'document_plagiarism_page'] %}
+    <nav class="sidebar" aria-label="Main Navigation">
+      <h2 class="sidebar-title">PLAGIARISM DETECTION</h2>
+      <ul class="sidebar-menu">
+        <li>
+          <a href="{{ url_for('text_plagiarism_page') }}">
+            <i class="fas fa-file-alt"></i> Text Detection
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('image_plagiarism_page') }}">
+            <i class="fas fa-image"></i> Image Detection
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('code_plagiarism_page') }}">
+            <i class="fas fa-code"></i> Code Detection
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('document_plagiarism_page') }}">
+            <i class="fas fa-file"></i> Document Detection
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('logout') }}">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        </li>
+      </ul>
+      <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle Sidebar">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+  {% endif %}
+
+  <!-- Main Content -->
+  <main class="main-content" role="main">
+    {% block content %}{% endblock %}
+  </main>
+</div>
+
+<!-- Optional loading spinner for showLoading() -->
+<div id="loading-spinner" style="display: none;">
+  <i class="fas fa-spinner fa-spin" style="font-size:2rem;"></i>
+</div>
+
+<!-- Removed Firebase Auth script since we're using SQL authentication now -->
+<!-- <script type="module" src="{{ url_for('static', filename='js/firebase-auth.js') }}"></script> -->
+
+<script>
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('sidebar-open');
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<style>
+  /* Reset or basic setup */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #ecf0f1;
+    font-family: 'Arial', sans-serif;
+  }
+
+  /* Container that centers everything vertically + horizontally */
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;         /* center horizontally */
+    justify-content: center;     /* center vertically */
+    min-height: 100vh;           /* occupy full viewport height */
+    text-align: center;          /* center text content */
+    padding: 20px;               /* some spacing around edges */
+    box-sizing: border-box;      /* ensure padding doesn't add extra width */
+    margin-right: 170px;
+  }
+
+  /* Header with back arrow and main title */
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 10px;                   /* space between arrow + text */
+    margin-bottom: 20px;         /* spacing below header */
+  }
+  .header .back-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .header .back-arrow i {
+    font-size: 24px;            /* arrow icon size */
+    color: #2c3e50;
+  }
+
+  /* Subtitle */
+  .page-subtitle {
+    font-size: 16px;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+  }
+
+  /* Form wrapper for the two text areas */
+  .container-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* allow wrapping on smaller screens */
+    justify-content: center; /* center them horizontally */
+  }
+
+  /* Individual text containers */
+  .text-container {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 350px;           /* fixed width for consistent look */
+    max-width: 90vw;        /* responsive on small screens */
+    box-sizing: border-box;
+  }
+  .text-container h3 {
+    color: #34495e;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  /* Textarea styling */
+  textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: none;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+  }
+
+  /* Button container */
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+  .btn-primary {
+    background: #1abc9c;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  .btn-primary:hover {
+    background: #16a085;
+    transform: scale(1.05);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-container">
+  <!-- Header with back arrow + main title -->
+  <div class="header">
+    <button class="back-arrow" onclick="history.back()">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <h1>CODE PLAGIARISM DETECTION</h1>
+  </div>
+
+  <p class="page-subtitle">Paste two code snippets to check for plagiarism.</p>
+
+  <form action="{{ url_for('detect_code') }}" method="post">
+    <div class="container-wrapper">
+      <div class="text-container">
+        <h3>Code 1</h3>
+        <textarea name="code1" placeholder="Enter first code snippet" rows="8" required></textarea>
+      </div>
+      <div class="text-container">
+        <h3>Code 2</h3>
+        <textarea name="code2" placeholder="Enter second code snippet" rows="8" required></textarea>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button type="submit" class="btn-primary">Detect Code Plagiarism</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
